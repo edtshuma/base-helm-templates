@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platforms-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: platformservice
+  template:
+    metadata:
+      labels:
+        app: platformservice
+    spec:
+      containers:
+        - name: platformservice
+          image: golide/dotnet6-memdump:0.0.2
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platformservice-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: platformservice
+  ports:
+  - name: platformservice
+    protocol: TCP
+    port: 7799
+    targetPort: 7799
