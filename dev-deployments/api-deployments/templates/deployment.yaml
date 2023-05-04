@@ -1,0 +1,33 @@
+{{ if not .Values.deployment.disabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name | quote }}
+  labels:
+    app: {{ .Values.deployment.name | quote }}    
+  annotations:
+    commitHash: {{ .Values.deployment.commitHash | quote }}
+    timestamp: {{ now | quote }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name | quote }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name | quote }}
+      annotations:
+        commitHash: {{ .Values.deployment.commitHash | quote }}
+    spec:
+      containers:
+        - image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          name: {{ .Values.deployment.name | quote }}
+          ports:
+            - name: http
+              containerPort: 7799
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+{{ end }}

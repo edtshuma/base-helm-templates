@@ -1,0 +1,14 @@
+resources:
+  limits:
+    memory: 300Mi
+  requests:
+    cpu: 10m
+    memory: 128Mi
+
+replicaCount: 1
+
+service:
+  port: 7799
+
+env:
+  name: dev

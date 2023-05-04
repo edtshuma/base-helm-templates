@@ -1,0 +1,14 @@
+kind: ConfigMap  
+apiVersion: v1  
+metadata:  
+  name: {{ $.Values.deployment.name }}-{{ .name }}-configmap
+  labels:  
+    app: {{ $.Values.deployment.name }}
+
+data:
+  index.html: |
+    <html>
+    <h1>Welcome</h1>
+    </br>
+    <h1>Hi! I got deployed in {{ .Values.env.name }} Environment using Helm Chart </h1>
+    </html>
