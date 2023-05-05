@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout'){
            steps{
-               sh "echo Checked out ${PROJECT_NAME}"
+               sh "echo  ${PROJECT_NAME}"
             }
          }
 
