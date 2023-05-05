@@ -1,4 +1,4 @@
-# Development Environment Deployment : Helm Charts
+# Base Helm Charts
 
 What are Helm Charts
 Helm charts are packages of K8s resources wc are installed into a K8s cluster as a unit. Helm templates, wc make up a chart, separate the definition of a resource, which is largely static, from its configuration, which may differ with each installation.
@@ -27,14 +27,15 @@ cd dev-deployments
 helm create api-deployments  
 ```
 
-Remove all default files in templates folder:
+## Remove all default files in templates folder:
 
 ```
  rm -rf templates/*
 ```
 
-Recreate files in templates folder,</br>
-containing only resources you want to templatize as a BASE structure for ALL deployments :
+## Recreate files in templates folder
+
+Includes only resources to be templatized as a BASE structure for all deployments :
 
 ```
 configmap.yaml  deployment.yaml  service.yaml
